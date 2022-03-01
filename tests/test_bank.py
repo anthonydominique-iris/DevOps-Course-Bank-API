@@ -56,3 +56,7 @@ def test_add_funds(bank: Bank):
     transactions = bank.transactions
     assert {t.amount for t in transactions} == {25}
     
+def test_add_funds_isinteger(bank: Bank):
+    """is the value an integer"""
+    transactions = bank.transactions
+    assert isinstance({t.amount for t in transactions} == {25}, int) == True
