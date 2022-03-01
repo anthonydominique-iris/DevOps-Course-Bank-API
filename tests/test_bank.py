@@ -1,9 +1,13 @@
 """Unit tests for bank.py"""
 
+from gettext import translation
+from typing  import Set, List
+from datetime import datetime
+
 import pytest
 
 from bank_api.bank import Bank, Account
-
+"""from dataclasses import dataclass"""
 
 @pytest.fixture
 def bank() -> Bank:
@@ -45,4 +49,10 @@ def test_cannot_modify_accounts_set(bank: Bank):
 
 
 # TODO: Add unit tests for bank.add_funds()
-
+def test_add_funds(bank: Bank):   
+    bank.create_account('Test')
+    bank.add_funds('Test', 25)
+    
+    transactions = bank.transactions
+    assert {t.amount for t in transactions} == {25}
+    
