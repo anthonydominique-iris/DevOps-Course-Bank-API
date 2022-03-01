@@ -24,10 +24,13 @@ def test_account_creation(client: FlaskClient):
 
     assert check.status_code == 200  #successfull response
 
-    json_data = check.data.decode()
+
+
+def test_check_created_account(client: FlaskClient):
+    check2 = client.get('/accounts/Test')
+
+    assert check2.status_code == 200  #successfull response
+
+    json_data = check2.data.decode()
     data = json.loads(json_data)
     assert data['name'] == 'Test'
-
-
-
-
